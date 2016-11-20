@@ -42,10 +42,12 @@ BEGIN
    LOOP
     max_id := max_id +1;
     num_ep := num_ep +1;    
-    insert into video values(max_id,'titre temporaire','à venir',1,TO_DATE(v_date,'yyyy/mm/dd'),'N','LARGE',10,10,'NO COUNTRY',10,num_ep);
+    insert into video values(max_id,'titre temporaire','à venir',1,TO_DATE(v_date,'yyyy/mm/dd'),TO_DATE(v_date+7,'yyyy/mm/dd'),'N','LARGE',10,10,'NO COUNTRY',10,num_ep);
     v_date := v_date + interval '7' day;
     compteur := compteur +7;
    END LOOP;
 END;
 /
 show errors procedure generation;
+
+
