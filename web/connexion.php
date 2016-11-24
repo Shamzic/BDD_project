@@ -1,7 +1,13 @@
 <html>
+<head>
+		<meta charset="utf-8" />
+	 	<link rel="stylesheet" href="connexion.css" type="text/css">
+	 	<title>Videotubes</title>
+	 	<!-- Lien d'une page css -->
 </head>
 <body>
-		<h1>Liste des utilisateurs</h1>
+	<?php include("menu.php"); ?>
+		<h3>Liste des utilisateurs</h3>
 
 	<?php
 	$db_username = "shamery";
@@ -38,29 +44,33 @@
 		exit;
 	}
 	?>
+	<h3 class="text-center">
+		Sign in
+		<span class="subtitle">No account yet ? --> <a href="/~shamery/inscription.php">Sign up</a>
+		</span>
+	</h3>
 
-	<form action="<?=BASEURL?>/index.php/user/signup" method="post">
-	<div class="formline">
-		<label>Pseudo</label>
-		<input type="text" placeholder="login" name="login">
-	</div>
+	<form action="<?=BASEURL?>/~shamery/connexion.php" method="post">
+		<div class="formline">
+			<label for="login">Your login</label>
+			<input type="text" id="login" placeholder="login" name="login">
+		</div>
 	
-	<div class="formline">
-		<label>Mot de passe</label>
-		<input type="password" placeholder="*****" name="password">
-	</div>
+		<div class="formline">
+			<label for="password">Your password</label>
+			<input type="password" id="password" placeholder="*****" name="password">
+		</div>
 	
-	<div class="formline">
-		<label>Confirmez le mot de passe</label>
-		<input type="password" placeholder="*****" name="password_check">
-	</div>
-	
-	<div class="formline">
-		<label></label>
-		<input type="submit" value="Sign up">	
-	</div>
-	
+		<div class="formline">
+			<label></label>
+			<input type="submit" value="Sign in">
+		</div>
 	</form>
 
+
+
+
+
+	
 </body>
 </html>
