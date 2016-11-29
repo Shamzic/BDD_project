@@ -105,9 +105,9 @@ if (isset($_SESSION['user'])) {
     ?>
 </div>
 
-<footer id="footer">
-    <p>Projet de base de données web </p>
-    <p>L3 informatique</p>
+<footer class="replay-footer" id="footer">
+    <div class="footer-title">iREPLAY</div>
+    <div class="footer-copyright"> © 2016 HAMERY Simon & PAVLOV Catalina | All Right Reserved </div>
 </footer>
 
 <script src="js/vendor/jquery.js"></script>

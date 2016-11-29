@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Gotham Medium";
+    src: url(Gotham-Medium.otf);
+}
+
 .row-welcome{
     padding: 30px;
 }
@@ -24,7 +29,7 @@
 }
 
 .button-sign:hover{
-    background-color: rgba(95, 180, 248, 0.5);
+    background-color: rgba(255, 207, 116, 0.5);
 }
 
 .topBar-ul {
@@ -40,4 +45,28 @@
 
 .topBar-li a:hover {
     background-color: #9cd865;
+}
+
+.replay-footer{
+    padding: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(153, 248, 86, 0.5);
+}
+
+.footer-title{
+    font-family: "Gotham Medium", sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.footer-copyright{
+    font-family: "Gotham Medium", sans-serif;
+    color: white;
+    font-size: 1rem;
 }
