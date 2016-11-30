@@ -12,7 +12,6 @@ header
 {
 	text-align: center;
 	background-color: #E5E7E9;
-	border-bottom: 1px solid black;
 }
 h1 /* Le titre est centrée et aggrandi à 76 px
 	  La police est Roboto
@@ -35,7 +34,6 @@ h1 /* Le titre est centrée et aggrandi à 76 px
 
 nav{
 	text-align: center;
-	border-bottom: 1px solid black;
 }
 
 nav ul{
@@ -72,7 +70,6 @@ main {
 #central{
 	font-family: 'Roboto', sans-serif;
 	text-align: center;
-	border-bottom: 1px solid black;
 }
 
 h3{

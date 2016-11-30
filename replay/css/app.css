@@ -82,6 +82,10 @@
 
 .object-fit_none {
     object-fit: cover;
-    height: 9.5rem;
+    height: 12rem;
     width: 100%;
+}
+
+.video_image{
+    height: 15.5rem;
 }
