@@ -4,9 +4,9 @@
     foreach ($v as $video) {
         ?>
         <a href="#">
-        <div class="large-3 columns">
+        <div class="large-4 columns">
         <?php
-        echo '<img src="data:image/jpg;base64,' . base64_encode($video->getTexte()) . '"/>';
+        echo '<img class="object-fit_none" src="data:image/jpg;base64,' . base64_encode($video->getTexte()) . '"/>';
         ?>
         <div class="video-title"><?php echo $video->getTitre(); ?></div>
 

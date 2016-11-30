@@ -11,7 +11,7 @@ div.msg
 
 div.messages
 {
-	border:1px solid black; 
+	border:1px solid white;
 	overflow:auto; 
 	height:200px;
 	width:400px;

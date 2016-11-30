@@ -79,3 +79,9 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+.object-fit_none {
+    object-fit: cover;
+    height: 9.5rem;
+    width: 100%;
+}
