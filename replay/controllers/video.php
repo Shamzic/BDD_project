@@ -1,10 +1,10 @@
 <?php
 
-require_once 'models/note.php';
+require_once 'models/video.php';
 require_once 'models/partage.php';
 require_once 'models/user.php';
 
-class Controller_Note
+class Controller_Video
 {
 	/**
 	 * \brief Cette méthode permet à un utilisateur de créer une notes
@@ -29,9 +29,9 @@ class Controller_Note
 						{
 							$titre = htmlspecialchars($_POST['titre']);
 							$texte = htmlspecialchars($_POST['txt']);
-							Note::newNote($titre,$texte);
+							Video::newNote($titre,$texte);
 							$_SESSION['message'] = 'Note créée !';
-							header('Location: index.php?ctrl=note&action=mesNotes');
+							header('Location: index.php?ctrl=video&action=mesNotes');
 							exit();
 						}
 						else
@@ -64,7 +64,7 @@ class Controller_Note
 	{
 		if (isset($_SESSION['user']))
 		{
-			$n = Note::getByAuteur($_SESSION['uid']);
+			$v = Video::getVideos();
 			include 'views/videos.php';
 		}
 		else
@@ -91,7 +91,7 @@ class Controller_Note
 					if (isset($_GET['id']))
 					{	
 						$id = (int)$_GET['id'];
-						$note = Note::getById($id);
+						$note = Videos::getById($id);
 						if (!is_null($note))
 						{		
 							if ($_SESSION['uid'] == $note->getAuteur() || $note->isSharedWith($_SESSION['uid']))
@@ -130,15 +130,15 @@ class Controller_Note
 							$titre = htmlspecialchars($_POST['titre']);
 							$texte = htmlspecialchars($_POST['txt']);
 							$nid = (int)$_GET['id'];
-							Note::save($titre,$texte,$nid);
+							Video::save($titre,$texte,$nid);
 							if ($_SESSION['uid'] == Note::getById($nid)->getAuteur())
 							{
-								header('Location: index.php?ctrl=note&action=mesNotes');
+								header('Location: index.php?ctrl=video&action=mesNotes');
 								exit();
 							}
 							else
 							{
-								header('Location: index.php?ctrl=note&action=showsharedNotes');
+								header('Location: index.php?ctrl=video&action=showsharedNotes');
 								exit();
 							}
 						}
@@ -182,7 +182,7 @@ class Controller_Note
 					if ($_SESSION['uid'] == $note->getAuteur())
 					{
 						Note::deleteNote($id);
-						header('Location: index.php?ctrl=note&action=mesNotes');
+						header('Location: index.php?ctrl=video&action=mesNotes');
 						exit();
 					}
 					else
@@ -243,7 +243,7 @@ class Controller_Note
 						}
 					}
 				}
-				header('Location: index.php?ctrl=note&action=mesNotes');
+				header('Location: index.php?ctrl=video&action=mesNotes');
 				exit();
 			}
 			else
@@ -275,7 +275,7 @@ class Controller_Note
 					{
 						$uid = (int)$_GET['uid'];
 						Partage::deleteShare($uid,$nid);
-						header('Location: index.php?ctrl=note&action=mesNotes');
+						header('Location: index.php?ctrl=video&action=mesNotes');
 						exit();
 					}
 					else

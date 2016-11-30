@@ -3,16 +3,17 @@
     src: url(Gotham-Medium.otf);
 }
 
-.row-welcome{
+.row-welcome {
     padding: 30px;
 }
 
-.welcome{
+.welcome {
     color: white;
     text-transform: uppercase;
     font-family: "Gotham Ultra", serif;
     font-size: 80px;
 }
+
 .layer {
     background-color: rgba(248, 247, 216, 0.5);
     position: absolute;
@@ -22,13 +23,13 @@
     height: 100%;
 }
 
-.button-sign{
+.button-sign {
     font-size: 25px;
     text-transform: uppercase;
     background-color: rgba(153, 248, 86, 0.5);
 }
 
-.button-sign:hover{
+.button-sign:hover {
     background-color: rgba(255, 207, 116, 0.5);
 }
 
@@ -47,7 +48,7 @@
     background-color: #9cd865;
 }
 
-.replay-footer{
+.replay-footer {
     padding: 10px;
     font-size: 1.2rem;
     text-align: center;
@@ -58,15 +59,23 @@
     background-color: rgba(153, 248, 86, 0.5);
 }
 
-.footer-title{
+.footer-title {
     font-family: "Gotham Medium", sans-serif;
     font-weight: bold;
     color: white;
     font-size: 1.1rem;
 }
 
-.footer-copyright{
+.footer-copyright {
     font-family: "Gotham Medium", sans-serif;
     color: white;
     font-size: 1rem;
+}
+
+.video-title {
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }

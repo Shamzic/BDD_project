@@ -37,7 +37,7 @@ class Controller_User
 						{
 							$_SESSION['user'] = $login;
 							$_SESSION['uid'] = $u->getId();
-							header('Location: index.php?ctrl=note&action=mesNotes');
+							header('Location: index.php?ctrl=video&action=mesNotes');
 							exit();
 						}
 						else
