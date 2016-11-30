@@ -82,10 +82,8 @@ class Video extends Model_Base
 	}
 	
 	/**
-	 * \brief Permet de r�cup�rer toutes les notes cr��es par un utilisateur
-	 * \details Effectue une requ�te SQL qui s�lectionne toutes les lignes de la table Notes o� l'auteur est �gal � l'id de l'utilisateur
-	 * \param uid Identifant de l'utilisateur
-	 * \return Renvoie un tableau compos� d'instances de Note
+	 * \brief get all the videos
+     * \return table of Video class
 	 */
 	
 	public static function getVideos()
@@ -99,6 +97,26 @@ class Video extends Model_Base
 		}
 		return $res;
 	}
+
+    /**
+     * \brief get the videos by category
+     * \details query that select videos that have the category id
+     * \param category id
+     * \return table of Video class
+     */
+
+    public static function getByCategory($id)
+    {
+        $s = self::$_db->prepare('SELECT * FROM video WHERE id_categ = :id');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC))
+        {
+            $res[] = new Video($data['id_vid'],$data['nom_vid'],$data['video_image']);
+        }
+        return $res;
+    }
 	
 	/**
 	 * \brief Permet de r�cup�rer la note dont l'id est pass� en param�tre
