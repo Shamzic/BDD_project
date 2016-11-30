@@ -69,12 +69,12 @@ if (isset($_SESSION['user'])) {
     ?>
 
     <ul class="menu topBar-ul expanded">
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=mesNotes">Videos</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=mesNotes">Programs</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=mesNotes">Categories</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=mesNotes">Favorites</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=mesNotes">Subscriptions</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=mesNotes">Recommended</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Videos</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Programs</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=category&action=showCategories">Categories</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Favorites</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Subscriptions</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Recommended</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Profil </a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=deconnexion"> Déconnexion </a></li>
 <!--        <li class="topBar-li"><a href="index.php?ctrl=note&action=createNote"> Ajouter une note </a></li>-->

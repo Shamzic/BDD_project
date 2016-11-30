@@ -31,7 +31,7 @@ class Controller_Video
 							$texte = htmlspecialchars($_POST['txt']);
 							Video::newNote($titre,$texte);
 							$_SESSION['message'] = 'Note créée !';
-							header('Location: index.php?ctrl=video&action=mesNotes');
+							header('Location: index.php?ctrl=video&action=showVideos');
 							exit();
 						}
 						else
@@ -56,11 +56,10 @@ class Controller_Video
 	}
 	
 	/**
-	 * \brief Affiche les notes créées par l'utilisateur connecté
-	 * \details Si l'utilisateur est connecté, on récupère toutes ses notes puis on les affiche grâce à la vue mes_notes, sinon on le redirige vers l'accueil
+	 * \brief show all the videos
 	 */
 	
-	public function mesNotes()
+	public function showVideos()
 	{
 		if (isset($_SESSION['user']))
 		{
@@ -133,7 +132,7 @@ class Controller_Video
 							Video::save($titre,$texte,$nid);
 							if ($_SESSION['uid'] == Note::getById($nid)->getAuteur())
 							{
-								header('Location: index.php?ctrl=video&action=mesNotes');
+								header('Location: index.php?ctrl=video&action=showVideos');
 								exit();
 							}
 							else
@@ -182,7 +181,7 @@ class Controller_Video
 					if ($_SESSION['uid'] == $note->getAuteur())
 					{
 						Note::deleteNote($id);
-						header('Location: index.php?ctrl=video&action=mesNotes');
+						header('Location: index.php?ctrl=video&action=showVideos');
 						exit();
 					}
 					else
@@ -243,7 +242,7 @@ class Controller_Video
 						}
 					}
 				}
-				header('Location: index.php?ctrl=video&action=mesNotes');
+				header('Location: index.php?ctrl=video&action=showVideos');
 				exit();
 			}
 			else
@@ -275,7 +274,7 @@ class Controller_Video
 					{
 						$uid = (int)$_GET['uid'];
 						Partage::deleteShare($uid,$nid);
-						header('Location: index.php?ctrl=video&action=mesNotes');
+						header('Location: index.php?ctrl=video&action=showVideos');
 						exit();
 					}
 					else
