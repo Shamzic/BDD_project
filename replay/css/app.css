@@ -115,3 +115,9 @@
     filter: none;
     -webkit-filter: grayscale(0%);
 }
+
+.video-player
+{
+    width:64rem;
+    height: 36rem;
+}
