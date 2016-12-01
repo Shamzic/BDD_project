@@ -8,13 +8,14 @@ class Video extends Model_Base
 	private $_titre;
 	private $_texte;
 	private $_auteur;
+    private $_link;
 		
 	public function __construct ($id,$video_name,$video_img,$video_lnk)
 	{
 		$this->setId($id);
 		$this->setTitre($video_name);
 		$this->setTexte($video_img);
-		$this->setAuteur($video_lnk);
+		$this->setLink($video_lnk);
 	}
 	
 	public function getId()
@@ -43,6 +44,23 @@ class Video extends Model_Base
 			$this->_titre = '';
 		}
 	}
+
+    public function getLink()
+    {
+        return $this->_link;
+    }
+
+    public function setLink($video_link)
+    {
+        if (is_string($video_link))
+        {
+            $this->_link = $video_link;
+        }
+        else
+        {
+            $this->_link = '';
+        }
+    }
 	
 	public function getTexte()
 	{
@@ -119,28 +137,34 @@ class Video extends Model_Base
     }
 	
 	/**
-	 * \brief Permet de r�cup�rer la note dont l'id est pass� en param�tre
-	 * \details Effectue une requ�te SQL qui s�lectionne l'unique ligne de la table Notes o� l'id de la note est �gal � l'id pass� en param�tre
-	 * \param id Identifiant de la note recherch�e
-	 * \return Renvoie une instance de la classe Note
+	 * \brief get the video by its video gave as argument
+	 * \details query that select video by its own id gave as argument
+	 * \param id of the video
+	 * \return instance of Video class
 	 */
 	
 	public static function getById($id)
 	{
-		$s = self::$_db->prepare('SELECT * FROM Notes WHERE id_note = :id');
+		$s = self::$_db->prepare('SELECT * FROM video WHERE id_vid = :id');
 		$s->bindValue(':id', $id, PDO::PARAM_INT);
 		$s->execute();
-		$data = $s->fetch(PDO::FETCH_ASSOC);
-		if ($data) {
-			return new Note(
-				$data['id_note'],
-				$data['titre'],
-				$data['texte'],
-				$data['auteur']
-			);
-		} else {
-			return null;
-		}
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC))
+        {
+            $res[] = new Video($data['id_vid'],$data['nom_vid'],$data['video_image'], $data['video_link']);
+        }
+        return $res;
+//        $data = $s->fetch(PDO::FETCH_ASSOC);
+//		if ($data) {
+//			return new Note(
+//				$data['id_note'],
+//				$data['titre'],
+//				$data['texte'],
+//				$data['auteur']
+//			);
+//		} else {
+//			return null;
+//		}
 	}
 	
 	/**

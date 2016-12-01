@@ -1,7 +1,6 @@
 <?php
 
 require_once 'models/video.php';
-require_once 'models/partage.php';
 require_once 'models/user.php';
 
 class Controller_Video
@@ -54,6 +53,28 @@ class Controller_Video
         if (isset($_SESSION['user'])) {
             $v = Video::getVideos();
             include 'views/videos.php';
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    /**
+     * \brief show video by its id
+     */
+
+    public function showVideoById()
+    {
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_video'])) {
+                $id = (int)$_GET['id_video'];
+                $v = Video::getById($id);
+                include 'views/video.php';
+            } else {
+                $id = (int)$_GET['id_video'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
         } else {
             header('Location: index.php');
             exit();
