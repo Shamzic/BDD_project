@@ -7,11 +7,21 @@ class User extends Model_Base
 	private $_id;
 	private $_login;
 	private $_mdp;
+	private $_nom;
+	private $_prenom;
+	private $_mail;
+	private $_dateN;
+	private $_pays;
 
-	public function __construct($id,$l,$pw) {
+	public function __construct($id,$l,$pw,$n,$pr,$m,$d,$pa) {
 		$this->setId($id);
 		$this->setLogin($l);
 		$this->setMdp($pw);
+		$this->setNom($n);
+		$this->setPrenom($pr);
+		$this->setMail($m);
+		$this->setDateN($d);
+		$this->setPays($pa);
 	}
 
 	public function getId() {
@@ -48,6 +58,76 @@ class User extends Model_Base
 		else
 		{
 			$this->_mdp = '';
+		}
+	}
+	
+	public function getNom() {
+		return $this->_nom;
+	}
+	public function setNom($n) {
+		if (is_string($n))
+		{
+			$this->_nom = $n;
+		}
+		else
+		{
+			$this->_nom = '';
+		}
+	}
+	
+	public function getPrenom() {
+		return $this->_prenom;
+	}
+	public function setPrenom($pr) {
+		if (is_string($pr))
+		{
+			$this->_prenom = $pr;
+		}
+		else
+		{
+			$this->_prenom = '';
+		}
+	}
+	
+	public function getMail() {
+		return $this->_mail;
+	}
+	public function setMail($m) {
+		if (is_string($m))
+		{
+			$this->_mail = $m;
+		}
+		else
+		{
+			$this->_mail = '';
+		}
+	}
+	
+	public function getDateN() {
+		return $this->_dateN;
+	}
+	public function setDateN($d) {
+		if (is_string($d))
+		{
+			$this->_dateN = $d;
+		}
+		else
+		{
+			$this->_dateN = '';
+		}
+	}
+	
+	public function getPays() {
+		return $this->_pays;
+	}
+	public function setPays($pa) {
+		if (is_string($pa))
+		{
+			$this->_pays = $pa;
+		}
+		else
+		{
+			$this->_pays = '';
 		}
 	}
 	
@@ -92,18 +172,20 @@ class User extends Model_Base
 	 */
 
 	public static function get_by_login($login) {
-		$s = self::$_db->prepare('SELECT id_user,login_user,mdp_user FROM utilisateur WHERE login_user= :l'); //id_user,login_user,mdp_user
+		$s = self::$_db->prepare('SELECT * FROM utilisateur WHERE login_user= :l'); //id_user,login_user,mdp_user
 		$s->bindValue(':l', $login, PDO::PARAM_STR);
 		$s->execute();
 		$data = $s->fetch(PDO::FETCH_ASSOC);
 		if ($data) {
-			echo $data['login_user'];
-			echo $data['mdp_user'];
-
 			return new User(
 				$data['id_user'],
 				$data['login_user'],
-				$data['mdp_user']
+				$data['mdp_user'],
+				$data['nom_user'],
+				$data['prenom_user'],
+				$data['mail_user'],
+				$data['dateNaiss_user'],
+				$data['pays']
 			);
 		} else {
 			return null;
@@ -140,11 +222,16 @@ class User extends Model_Base
 	 * \param pw Mot de passe haché du nouvel utilisateur
 	 */
 	
-	public static function newUser($l,$pw)
+	public static function newUser($l,$pw,$n,$pr,$m,$d,$pa)
 	{
-		$q = self::$_db->prepare('INSERT INTO utilisateur (login_user,mdp_user) VALUES (:l,:pw)');
+		$q = self::$_db->prepare('INSERT INTO utilisateur (login_user,mdp_user,nom_user,prenom_user,mail_user,dateNaiss_user,pays) VALUES (:l,:pw,:n,:pr,:m,:d,:pa)');
 		$q->bindValue(':l',$l, PDO::PARAM_STR);
 		$q->bindValue(':pw',$pw, PDO::PARAM_STR);
+		$q->bindValue(':n',$n, PDO::PARAM_STR);
+		$q->bindValue(':pr',$pr, PDO::PARAM_STR);
+		$q->bindValue(':m',$m, PDO::PARAM_STR);
+		$q->bindValue(':d',$d, PDO::PARAM_STR);
+		$q->bindValue(':pa',$pa, PDO::PARAM_STR);
 		$q->execute();
 	}
 }
