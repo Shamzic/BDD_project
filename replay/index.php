@@ -53,6 +53,7 @@ $content = ob_get_clean();
     <link rel="stylesheet" href="css/connexion.css" type="text/css">
     <link rel="stylesheet" href="css/foundation.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
 </head>
 <body>
 <!--<header>-->
