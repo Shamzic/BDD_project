@@ -137,7 +137,7 @@
 @media screen and (max-width: 480px) {
     .video-player {
         width: 30rem !important;
-        height:  20rem !important;
+        height: 20rem !important;
     }
 }
 
@@ -152,5 +152,14 @@
     background-color: #9cd865;
     width: 100%;
     color: white;
-    margin-bottom: 0px;
+    margin-bottom: 1.875rem;
 }
+
+.fi-star:hover {
+    color: inherit;
+}
+
+.fi-star--clicked {
+    color: #FFC300;
+}
+

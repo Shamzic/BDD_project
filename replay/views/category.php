@@ -1,4 +1,4 @@
-<h2> Category </h2>
+<h2 class="video-page--title"> Category </h2>
 <div class="row">
     <?php
     foreach ($c as $category) {

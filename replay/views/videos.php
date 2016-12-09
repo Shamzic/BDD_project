@@ -8,9 +8,11 @@
             <?php
             echo '<img class="object-fit_none" src="data:image/jpg;base64,' . base64_encode($video->getTexte()) . '"/>';
             ?>
-    </a>
+
     <span class="video-title"><?php echo $video->getTitre(); ?></span>
-    <i class="fi-star"></i>
+    </a>
+    <i class="fi-star fi-star--clicked"></i>
+
 
 </div><?php
 }

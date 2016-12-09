@@ -5,10 +5,7 @@ foreach ($v as $video) {
     <div class="row">
             <div style="text-align: center;">
                 <iframe class="video-player" src=<?php echo $video->getLink(); ?> frameborder="0"
-                        allowfullscreen></iframe>
-                <script type="text/javascript" language="javascript">
-                    $('.video-player').css('height', $(window).height()+'px');
-                </script>
+                        allowfullscreen height="36rem"></iframe>
             </div>
     </div>
     <?php
