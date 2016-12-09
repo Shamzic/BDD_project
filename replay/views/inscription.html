@@ -1,3 +1,8 @@
+<script>
+	$( function() {
+		$( "#dateN" ).datepicker();
+	} );
+</script>
 <form method="post" action="index.php?ctrl=user&action=inscription">
 	<label for="nom">Nom</label>
 	<input type="text" id="nom" name="nom">
@@ -15,7 +20,7 @@
 	<input type="password" id="pw2" name="pw2">
 	
 	<label for="dateN">Date de naissance</label>
-	<input type="date" id="dateN" name="dateN">
+	<input type="text" id="dateN" name="dateN">
 	
 	<label for="mail">Mail</label>
 	<input type="mail" id="mail" name="mail">
@@ -26,3 +31,4 @@
 	
 	<input type="submit">
 </form>
+

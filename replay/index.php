@@ -54,6 +54,13 @@ $content = ob_get_clean();
     <link rel="stylesheet" href="css/foundation.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <!--<header>-->
@@ -110,10 +117,5 @@ if (isset($_SESSION['user'])) {
     <div class="footer-title">iREPLAY</div>
     <div class="footer-copyright"> © 2016 HAMERY Simon & PAVLOV Catalina | All Right Reserved </div>
 </footer>
-
-<script src="js/vendor/jquery.js"></script>
-<script src="js/vendor/what-input.js"></script>
-<script src="js/vendor/foundation.js"></script>
-<script src="js/app.js"></script>
 </body>
 </html>
