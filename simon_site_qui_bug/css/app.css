@@ -1,0 +1,171 @@
+@font-face {
+    font-family: "Gotham Medium";
+    src: url(Gotham-Medium.otf);
+}
+
+.row-welcome {
+    padding: 30px;
+}
+
+.welcome {
+    color: white;
+    text-transform: uppercase;
+    font-family: "Gotham Ultra", serif;
+    font-size: 80px;
+}
+
+.layer {
+    background-color: rgba(248, 247, 216, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button-sign {
+    font-size: 25px;
+    text-transform: uppercase;
+    background-color: rgba(153, 248, 86, 0.5);
+}
+
+.button-sign:hover {
+    background-color: rgba(255, 207, 116, 0.5);
+}
+
+.topBar-ul {
+    background-color: #333;
+}
+
+.topBar-li a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topBar-li a:hover {
+    background-color: rgb(255, 207, 116);
+}
+
+.replay-footer {
+    padding: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgba(153, 248, 86, 0.5);
+}
+
+.footer-title {
+    font-family: "Gotham Medium", sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.footer-copyright {
+    font-family: "Gotham Medium", sans-serif;
+    color: white;
+    font-size: 1rem;
+}
+
+.video-title {
+    float : left;
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: darkslategrey;
+}
+
+.category-title {
+    position: absolute;
+    float: left;
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 5px;
+    font-size: 1.2rem;
+    color: darkslategrey;
+}
+
+.category-title:hover {
+    color: darkslategrey;
+}
+
+.object-fit_none {
+    object-fit: cover;
+    height: 12rem;
+    width: 100%;
+}
+
+.video_image {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+, IE10 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+    -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
+    -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+.video_image:hover {
+    filter: none;
+    -webkit-filter: grayscale(0%);
+}
+
+.video-box {
+    margin-bottom: 1.875rem;
+}
+
+.category_image {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+, IE10 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+    -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
+    -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+.category-box
+{
+    margin-bottom:3.125rem;
+}
+
+.category_image:hover {
+    filter: none;
+    -webkit-filter: grayscale(0%);
+}
+
+.video-player {
+    width: 64rem;
+    height: 36rem;
+}
+
+@media screen and (max-width: 480px) {
+    .video-player {
+        width: 30rem !important;
+        height: 20rem !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .video-player {
+        width: 36rem !important;
+        height: 22.5rem !important;
+    }
+}
+
+.video-page--title {
+    background-color: #9cd865;
+    width: 100%;
+    color: white;
+    margin-bottom: 1.875rem;
+}
+
+.fi-star--clicked {
+    color: #FFC300;
+}
+
+.video-fav{
+    float:right;
+}
+
