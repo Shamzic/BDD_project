@@ -50,10 +50,17 @@ $content = ob_get_clean();
 <head>
     <title>Videosef</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/connexion.css" type="text/css">
+    <link rel="stylesheet" href="css/connexion.css?<?php echo time(); ?>" type="text/css">
     <link rel="stylesheet" href="css/foundation.css" type="text/css">
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css?<?php echo time(); ?>" type="text/css">
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <!--<header>-->
@@ -73,7 +80,7 @@ if (isset($_SESSION['user'])) {
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Videos</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Programs</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=category&action=showCategories">Categories</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Favorites</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideosByFavorite">Favorites</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Subscriptions</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Recommended</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Profil </a></li>
@@ -90,7 +97,7 @@ if (isset($_SESSION['user'])) {
     <?php
 }
 ?>
-<div id="central" style="height: 100%">
+<div id="central" style="height: 100% margin-bottom:6.25rem">
 <!--    <nav>-->
 <!--        <ul>-->
 <!--            <li><a href="index.php?ctrl=user&action=inscription"> Inscription </a><br></li>-->
@@ -110,10 +117,5 @@ if (isset($_SESSION['user'])) {
     <div class="footer-title">iREPLAY</div>
     <div class="footer-copyright"> © 2016 HAMERY Simon & PAVLOV Catalina | All Right Reserved </div>
 </footer>
-
-<script src="js/vendor/jquery.js"></script>
-<script src="js/vendor/what-input.js"></script>
-<script src="js/vendor/foundation.js"></script>
-<script src="js/app.js"></script>
 </body>
 </html>
