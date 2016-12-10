@@ -50,9 +50,9 @@ $content = ob_get_clean();
 <head>
     <title>Videosef</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/connexion.css" type="text/css">
+    <link rel="stylesheet" href="css/connexion.css?<?php echo time(); ?>" type="text/css">
     <link rel="stylesheet" href="css/foundation.css" type="text/css">
-    <link rel="stylesheet" href="css/app.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css?<?php echo time(); ?>" type="text/css">
     <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -80,7 +80,7 @@ if (isset($_SESSION['user'])) {
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Videos</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Programs</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=category&action=showCategories">Categories</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=favorite&action=showFavorites">Favorites</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideosByFavorite">Favorites</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Subscriptions</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Recommended</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Profil </a></li>
@@ -97,7 +97,7 @@ if (isset($_SESSION['user'])) {
     <?php
 }
 ?>
-<div id="central" style="height: 100%">
+<div id="central" style="height: 100% margin-bottom:6.25rem">
 <!--    <nav>-->
 <!--        <ul>-->
 <!--            <li><a href="index.php?ctrl=user&action=inscription"> Inscription </a><br></li>-->

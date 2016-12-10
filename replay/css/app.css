@@ -52,7 +52,7 @@
     padding: 10px;
     font-size: 1.2rem;
     text-align: center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: 70px;
@@ -73,6 +73,7 @@
 }
 
 .video-title {
+    float : left;
     margin: 0;
     margin-bottom: 2px;
     padding: 5px;
@@ -102,10 +103,6 @@
 }
 
 .video_image {
-    height: 15.5rem;
-}
-
-.video_image {
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+, IE10 */
     -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
     -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
@@ -117,11 +114,20 @@
     -webkit-filter: grayscale(0%);
 }
 
+.video-box {
+    margin-bottom: 1.875rem;
+}
+
 .category_image {
     filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+, IE10 */
     -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
     -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
     -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+
+.category-box
+{
+    margin-bottom:3.125rem;
 }
 
 .category_image:hover {
@@ -155,11 +161,11 @@
     margin-bottom: 1.875rem;
 }
 
-.fi-star:hover {
-    color: inherit;
-}
-
 .fi-star--clicked {
     color: #FFC300;
+}
+
+.video-fav{
+    float:right;
 }
 

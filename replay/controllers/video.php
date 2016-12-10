@@ -2,6 +2,7 @@
 
 require_once 'models/video.php';
 require_once 'models/user.php';
+require_once 'models/favorite.php';
 
 class Controller_Video
 {
@@ -50,8 +51,21 @@ class Controller_Video
 
     public function showVideos()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idfav = Favorite::get_by_id($idu);
+            if (in_array($idv, $idfav)) {
+                Favorite::deleteFavorite($idu, $idv);
+            } else {
+                Favorite::newFavorite($idu, $idv);
+            }
+
+        }
         if (isset($_SESSION['user'])) {
+            $idu = $_SESSION['uid'];
             $v = Video::getVideos();
+            $f = Favorite::getFavorites($idu);
             include 'views/videos.php';
         } else {
             header('Location: index.php');
@@ -87,9 +101,22 @@ class Controller_Video
 
     public function showVideosByCategory()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idfav = Favorite::get_by_id($idu);
+            if (in_array($idv, $idfav)) {
+                Favorite::deleteFavorite($idu, $idv);
+            } else {
+                Favorite::newFavorite($idu, $idv);
+            }
+
+        }
         if (isset($_SESSION['user'])) {
             if (isset($_GET['id_cat'])) {
                 $id = (int)$_GET['id_cat'];
+                $idf = $_SESSION['uid'];
+                $f = Favorite::getFavorites($idf);
                 $vc = Video::getByCategory($id);
                 include 'views/video_by_category.php';
             } else {
@@ -97,6 +124,29 @@ class Controller_Video
                 $error_message = $id;
                 include 'views/error.php';
             }
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function showVideosByFavorite()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idfav = Favorite::get_by_id($idu);
+            if (in_array($idv, $idfav)) {
+                Favorite::deleteFavorite($idu, $idv);
+            } else {
+                Favorite::newFavorite($idu, $idv);
+            }
+
+        }
+        if (isset($_SESSION['user'])) {
+            $id = $_SESSION['uid'];
+            $f = Video::getByFavorite($id);
+            include 'views/favorite.php';
         } else {
             header('Location: index.php');
             exit();
