@@ -79,17 +79,17 @@ class Controller_User
 		}
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
-			if (isset($_POST['login']) && isset($_POST['pw']) && isset($_POST['pw2']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['dateN']) && isset($_POST['mail']) && isset($_POST['pays']) )
+			if (isset($_POST['login']) && isset($_POST['pw']) && isset($_POST['pw2']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['mail']) && isset($_POST['dateN']) &&  isset($_POST['pays']) )
 			{
-				if ($_POST['login'] != '' && $_POST['pw'] != '' && $_POST['pw2'] != '' && $_POST['nom'] != '' && $_POST['prenom'] != '' && $_POST['dateN'] != '' && $_POST['mail'] != '' && $_POST['pays'] != '')
+				if ($_POST['login'] != '' && $_POST['pw'] != '' && $_POST['pw2'] != '' && $_POST['nom'] != '' && $_POST['prenom'] != '' && $_POST['mail'] != '' && $_POST['dateN'] != ''  && $_POST['pays'] != '')
 				{
 					$login = htmlspecialchars($_POST['login']);
 					$mdp = hash('md5',htmlspecialchars($_POST['pw']));
 					$mdp2 = hash('md5',htmlspecialchars($_POST['pw2']));
 					$nom = htmlspecialchars($_POST['nom']);
 					$prenom = htmlspecialchars($_POST['prenom']);
-					$dateN = htmlspecialchars($_POST['dateN']);
 					$mail = htmlspecialchars($_POST['mail']);
+					$dateN = htmlspecialchars($_POST['dateN']);
 					$pays = htmlspecialchars($_POST['pays']);
 					
 					if ($mdp == $mdp2)
@@ -97,7 +97,7 @@ class Controller_User
 						$u = User::get_by_login($login);
 						if (is_null($u))
 						{
-							User::newUser($login,$mdp,$nom,$prenom,$dateN,$mail,$pays);
+							User::newUser($login,$mdp,$nom,$prenom,$mail,$dateN,$pays);
 							$_SESSION['message'] = "Inscription réalisée avec succès !";
 						}
 						else
