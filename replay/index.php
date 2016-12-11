@@ -97,7 +97,7 @@ if (isset($_SESSION['user'])) {
     <?php
 }
 ?>
-<div id="central" style="height: 100% margin-bottom:6.25rem">
+<div id="central" style="height: 100%">
 <!--    <nav>-->
 <!--        <ul>-->
 <!--            <li><a href="index.php?ctrl=user&action=inscription"> Inscription </a><br></li>-->
