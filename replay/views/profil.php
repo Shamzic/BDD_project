@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="css/profil.css" type="text/css">
 	</head>
 	<div class="titre">
-		<h2>Profil de <?php echo $u->getLogin();?></h2>
+		<div class="titre">Profil de <?php echo $u->getLogin();?></div>
 	</div>
 	<div class="profil">
 		<ul>

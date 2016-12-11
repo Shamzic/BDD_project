@@ -3,6 +3,7 @@
 require_once 'models/video.php';
 require_once 'models/user.php';
 require_once 'models/favorite.php';
+require_once 'models/recommended.php';
 
 class Controller_Video
 {
@@ -147,6 +148,25 @@ class Controller_Video
             $id = $_SESSION['uid'];
             $f = Video::getByFavorite($id);
             include 'views/favorite.php';
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function showVideoByRecommanded()
+    {
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_video'])) {
+                $id = (int)$_GET['id_video'];
+                $v = Recommended::getById($id);
+                
+                include 'views/recommanded.php';
+            } else {
+                $id = (int)$_GET['id_video'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
         } else {
             header('Location: index.php');
             exit();

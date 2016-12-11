@@ -5,18 +5,18 @@
 
 .titre
 {
-	color: white;
+	color: black;
 	margin-top : none;
 	margin-bottom: 20px;
 	text-align: center;
 	font-family: "Gotham Medium", sans-serif;
 	font-size : 25px;
-	text-decoration-style: bold;
+	font-weight: bold;
 }
 
 .center
 {
-	background-color: #31B404;
+	background-color: #D0F5A9;
 	text-align: center;
 	width:40%;
     margin-left:30%;
@@ -27,7 +27,7 @@
 
 .center label
 {
-		color: white;
+		color: black;
 		margin-top : none;
 		margin-bottom: none;
 		font-family: "Gotham Medium", sans-serif;

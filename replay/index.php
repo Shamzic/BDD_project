@@ -82,7 +82,7 @@ if (isset($_SESSION['user'])) {
         <li class="topBar-li"><a href="index.php?ctrl=category&action=showCategories">Categories</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideosByFavorite">Favorites</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Subscriptions</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Recommended</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideosByRecommended">Recommended</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Profil </a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=deconnexion"> Déconnexion </a></li>
 <!--        <li class="topBar-li"><a href="index.php?ctrl=note&action=createNote"> Ajouter une note </a></li>-->

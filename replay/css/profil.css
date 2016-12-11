@@ -6,9 +6,11 @@
 
 .titre
 {
-	margin-top : 20px;
-	margin-bottom: 40px;
-
+	font-size: 25px;
+	margin-top : 10px;
+	margin-bottom: 10px;
+	font-family: "Gotham Medium", sans-serif;
+	font-weight: bold;
 }
 
 ul {
@@ -25,19 +27,22 @@ ul {
 }
 
 li.blue{
-		background-color: #DAF7A6 ;
+		background-color: #D0F5A9;
 		color: black;
 		margin-top : 7px;
 		margin-bottom: 7px;
 		font-family: "Gotham Medium", sans-serif;
 		
+		
 }
 
 .profil
 {
-	background-color: #DAF7A6;
+	background-color: #D0F5A9;
 	text-align: center;
 	width:40%;
     margin-left:30%;
     font-family: "Gotham Medium", sans-serif;
+    margin-bottom: 70px;
+    padding: 5px 10px 10px;
 }

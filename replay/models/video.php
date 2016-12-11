@@ -191,6 +191,19 @@ class Video extends Model_Base
 //		}
     }
 
+      public static function getByRecommended($id)
+    {
+        $s = self::$_db->prepare('SELECT * FROM video WHERE id_vid in (SELECT id_vid FROM interesse WHERE id_user = :id)');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+        }
+        return $res;
+    }
+
+
     /**
      * \brief Permet de cr�er une nouvelle note dans la base de donn�es
      * \details Effectue une requ�te d'insertion dans la table Notes
