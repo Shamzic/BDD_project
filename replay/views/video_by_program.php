@@ -12,7 +12,7 @@
                 <span class="video-title"><?php echo $videoProg->getTitre(); ?></span>
         </a>
         <form method="post"
-              action="index.php?ctrl=video&action=showVideosByCategory&id_cat=<?php echo $videoProg->getIdCat() ?>"
+              action="index.php?ctrl=video&action=showVideosByProgram&id_prog=<?php echo $videoProg->getId() ?>"
               class="video-fav">
             <input type="image" src="<?php if (in_array($videoProg->getId(), $f)) {
                 echo "images/star.png";
