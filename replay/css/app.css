@@ -73,7 +73,7 @@
 }
 
 .video-title {
-    float : left;
+    float: left;
     margin: 0;
     margin-bottom: 2px;
     padding: 5px;
@@ -114,6 +114,15 @@
     -webkit-filter: grayscale(0%);
 }
 
+.program_image {
+    height: 23.13rem;
+}
+
+.page--padding
+{
+    padding-bottom:  6.25rem;
+}
+
 .video-box {
     margin-bottom: 1.875rem;
 }
@@ -125,9 +134,8 @@
     -webkit-backface-visibility: hidden; /* Fix for transition flickering */
 }
 
-.category-box
-{
-    margin-bottom:3.125rem;
+.category-box {
+    margin-bottom: 3.125rem;
 }
 
 .category_image:hover {
@@ -165,7 +173,7 @@
     color: #FFC300;
 }
 
-.video-fav{
-    float:right;
+.video-fav {
+    float: right;
 }
 

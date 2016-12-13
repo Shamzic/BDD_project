@@ -142,6 +142,19 @@ class Video extends Model_Base
         return $res;
     }
 
+    public static function getByProgram($id)
+    {
+        $s = self::$_db->prepare('SELECT * FROM video WHERE id_ems = :id');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+        $res = array();
+
+        while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+        }
+        return $res;
+    }
+
     /**
      * \brief get the favorites videos by user id
      * \details query that select video that are in favorite table

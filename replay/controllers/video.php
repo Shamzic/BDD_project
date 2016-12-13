@@ -154,6 +154,37 @@ class Controller_Video
         }
     }
 
+    public function showVideosByProgram()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idfav = Favorite::get_by_id($idu);
+            if (in_array($idv, $idfav)) {
+                Favorite::deleteFavorite($idu, $idv);
+            } else {
+                Favorite::newFavorite($idu, $idv);
+            }
+
+        }
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_prog'])) {
+                $id = (int)$_GET['id_prog'];
+                $idf = $_SESSION['uid'];
+                $f = Favorite::getFavorites($idf);
+                $vp = Video::getByProgram($id);
+                include 'views/video_by_program.php';
+            } else {
+                $id = (int)$_GET['id_prog'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
     public function showVideoByRecommanded()
     {
         if (isset($_SESSION['user'])) {

@@ -78,7 +78,7 @@ if (isset($_SESSION['user'])) {
 
     <ul class="menu topBar-ul expanded">
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Videos</a></li>
-        <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Programs</a></li>
+        <li class="topBar-li"><a href="index.php?ctrl=program&action=showPrograms">Programs</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=category&action=showCategories">Categories</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideosByFavorite">Favorites</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideos">Subscriptions</a></li>
