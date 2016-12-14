@@ -13,11 +13,11 @@
 
         </a>
         <form method="post" action="index.php?ctrl=program&action=showPrograms" class="video-fav">
-            <input type="image" src="<?php if (in_array($program->getId(), [])) {
+            <input type="image" src="<?php if (in_array($program->getId(), $sp)) {
                 echo "images/circleOn.png";
             } else {
                 echo "images/circleOff.png";
-            } ?>" alt="Submit" width="15" height="15" value="<?php echo $program->getId() ?>" name="fav">
+            } ?>" alt="Submit" width="15" height="15" value="<?php echo $program->getId() ?>" name="prog">
         </form>
     </div>
     <?php

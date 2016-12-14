@@ -185,6 +185,31 @@ class Controller_Video
         }
     }
 
+    public function showVideosBySubscriptions()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idfav = Favorite::get_by_id($idu);
+            if (in_array($idv, $idfav)) {
+                Favorite::deleteFavorite($idu, $idv);
+            } else {
+                Favorite::newFavorite($idu, $idv);
+            }
+
+        }
+        if (isset($_SESSION['user'])) {
+            $id = $_SESSION['uid'];
+//            $idf = $_SESSION['uid'];
+            $f = Favorite::getFavorites($id);
+            $s = Video::getBySubscription($id);
+            include 'views/subscription.php';
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
     public function showVideoByRecommanded()
     {
         if (isset($_SESSION['user'])) {

@@ -174,6 +174,18 @@ class Video extends Model_Base
         return $res;
     }
 
+    public static function getBySubscription($id)
+    {
+        $s = self::$_db->prepare('SELECT * FROM video WHERE id_ems in (SELECT id_ems FROM abonnement WHERE id_user = :id)');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+        }
+        return $res;
+    }
+
     /**
      * \brief get the video by its video gave as argument
      * \details query that select video by its own id gave as argument
