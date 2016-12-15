@@ -154,19 +154,24 @@ class Controller_Video
         }
     }
 
+    public function showVideosDataBase()
+    {
+
+    }
+
     public function showVideosByRecommended()
     {
-       /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $idv = htmlspecialchars($_POST['fav']);
-            $idu = $_SESSION['uid'];
-            $idrec = Recommended::get_by_id($idu);
-            if (in_array($idv, $idrec)) {
-                Recommended::deleteRecommended($idu, $idv);
-            } else {
-                Recommended::newRecommended($idu, $idv);
-            }
+        /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+             $idv = htmlspecialchars($_POST['fav']);
+             $idu = $_SESSION['uid'];
+             $idrec = Recommended::get_by_id($idu);
+             if (in_array($idv, $idrec)) {
+                 Recommended::deleteRecommended($idu, $idv);
+             } else {
+                 Recommended::newRecommended($idu, $idv);
+             }
 
-        }*/
+         }*/
         if (isset($_SESSION['user'])) {
             $id = $_SESSION['uid'];
             $rec = Video::getByRecommended($id);
@@ -232,7 +237,6 @@ class Controller_Video
             exit();
         }
     }
-
 
 
     /**
