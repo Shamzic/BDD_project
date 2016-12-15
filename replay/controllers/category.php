@@ -30,7 +30,7 @@ class Controller_Category
         if (isset($_SESSION['user']))
         {
             $c = Category::getCategories();
-            include 'views/category_admin.php';
+            include 'views/adminCategory.php';
         }
         else
         {

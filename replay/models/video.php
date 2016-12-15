@@ -7,18 +7,20 @@ class Video extends Model_Base
 {
     private $_id;
     private $_titre;
+    private $_desc;
     private $_texte;
     private $_auteur;
     private $_link;
     private $_idCat;
 
-    public function __construct($id, $video_name, $video_img, $video_lnk, $idCat)
+    public function __construct($id, $video_name, $video_img, $video_lnk, $idCat, $desc)
     {
         $this->setId($id);
         $this->setTitre($video_name);
         $this->setTexte($video_img);
         $this->setLink($video_lnk);
         $this->setIdCat($idCat);
+        $this->setDesc($desc);
     }
 
     public function getId()
@@ -52,6 +54,20 @@ class Video extends Model_Base
             $this->_titre = $video_name;
         } else {
             $this->_titre = '';
+        }
+    }
+
+    public function getDesc()
+    {
+        return $this->_desc;
+    }
+
+    public function setDesc($video_desc)
+    {
+        if (is_string($video_desc)) {
+            $this->_desc = $video_desc;
+        } else {
+            $this->_desc = '';
         }
     }
 
@@ -117,7 +133,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null,$data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -137,7 +153,7 @@ class Video extends Model_Base
         $res = array();
 
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+            $res[] =new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -150,7 +166,7 @@ class Video extends Model_Base
         $res = array();
 
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -169,7 +185,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -181,7 +197,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -200,78 +216,28 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], $data['video_link'],  $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
-//        $data = $s->fetch(PDO::FETCH_ASSOC);
-//		if ($data) {
-//			return new Note(
-//				$data['id_note'],
-//				$data['titre'],
-//				$data['texte'],
-//				$data['auteur']
-//			);
-//		} else {
-//			return null;
-//		}
     }
 
-      public static function getByRecommended($id)
+    public static function getByRecommended($id)
     {
         $s = self::$_db->prepare('SELECT * FROM video WHERE id_categ in (SELECT id_categorie FROM interesse WHERE id_user = :id) and id_vid NOT IN (SELECT id_vid from favoris where id_user=:id)');
         $s->bindValue(':id', $id, PDO::PARAM_INT);
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],null, $data['id_categ']);
+            $res[] =new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
 
-
-    /**
-     * \brief Permet de cr�er une nouvelle note dans la base de donn�es
-     * \details Effectue une requ�te d'insertion dans la table Notes
-     * \param titre Titre de la note � ajouter
-     * \param texte Texte de la note � ajouter
-     */
-
-    public static function newNote($video_name, $video_img)
+    public static function deleteVideo($idv)
     {
-        $q = self::$_db->prepare('INSERT INTO Notes VALUES (null,:t,:te,:a)');
-        $q->bindValue(':t', $video_name, PDO::PARAM_STR);
-        $q->bindValue(':te', $video_img, PDO::PARAM_STR);
-        $q->bindValue(':a', $_SESSION['uid'], PDO::PARAM_INT);
-        $q->execute();
-    }
-
-    /**
-     * \brief Permet de supprimer une note dans la base de donn�es
-     * \details Effectue une requ�te SQL qui supprime une ligne dans la table Notes o� l'id de la note est �gal � l'id pass� en param�tre
-     * \param id Identifiant de la note � supprimer
-     */
-
-    public static function deleteNote($id)
-    {
-        $s = self::$_db->prepare('DELETE FROM Notes WHERE id_note = :id');
-        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s = self::$_db->prepare('DELETE FROM video WHERE id_vid = :idv');
+        $s->bindValue(':idv', $idv, PDO::PARAM_INT);
         $s->execute();
-    }
 
-    /**
-     * \brief Permet de mettre � jour une note dans la base de donn�es
-     * \details Effectue une requ�te SQL qui met � jour la ligne dans la table Notes o� l'id de la note est �gal � l'id pass� en param�tre
-     * \param titre Nouveau titre de la note
-     * \param texte Nouveau texte de la note
-     * \param id Identifant de la note � modifier
-     */
-
-    public static function save($video_name, $video_img, $id)
-    {
-        $s = self::$_db->prepare('UPDATE Notes SET titre = :ti, texte = :te WHERE id_note = :i');
-        $s->bindValue(':ti', $video_name, PDO::PARAM_STR);
-        $s->bindValue(':te', $video_img, PDO::PARAM_STR);
-        $s->bindValue(':i', $id, PDO::PARAM_INT);
-        $s->execute();
     }
 }
