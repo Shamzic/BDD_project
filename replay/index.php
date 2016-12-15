@@ -53,7 +53,7 @@ $content = ob_get_clean();
     <link rel="stylesheet" href="css/connexion.css?<?php echo time(); ?>" type="text/css">
     <link rel="stylesheet" href="css/foundation.css" type="text/css">
     <link rel="stylesheet" href="css/app.css?<?php echo time(); ?>" type="text/css">
-    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script src="js/vendor/what-input.js"></script>
@@ -85,8 +85,18 @@ if (isset($_SESSION['user'])) {
         <li class="topBar-li"><a href="index.php?ctrl=video&action=showVideosByRecommended">Recommended</a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Profil </a></li>
         <li class="topBar-li"><a href="index.php?ctrl=user&action=deconnexion"> Déconnexion </a></li>
-<!--        <li class="topBar-li"><a href="index.php?ctrl=note&action=createNote"> Ajouter une note </a></li>-->
-<!--        <li class="topBar-li"><a href="index.php?ctrl=note&action=showSharedNotes"> Notes partagées avec moi </a></li>-->
+        <?php
+        if ($_SESSION['usadmin']) {
+            ?>
+            <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Admin </a></li>
+            <?php
+        } else {
+            ?>
+
+
+            <?php
+        }
+        ?>
     </ul>
 
     <?php
@@ -98,12 +108,12 @@ if (isset($_SESSION['user'])) {
 }
 ?>
 <div id="central" style="height: 100%">
-<!--    <nav>-->
-<!--        <ul>-->
-<!--            <li><a href="index.php?ctrl=user&action=inscription"> Inscription </a><br></li>-->
-<!--            <li><a href="index.php?ctrl=user&action=connexion"> Connexion </a><br></li>-->
-<!--        </ul>-->
-<!--    </nav>-->
+    <!--    <nav>-->
+    <!--        <ul>-->
+    <!--            <li><a href="index.php?ctrl=user&action=inscription"> Inscription </a><br></li>-->
+    <!--            <li><a href="index.php?ctrl=user&action=connexion"> Connexion </a><br></li>-->
+    <!--        </ul>-->
+    <!--    </nav>-->
     <?php
     if (isset($_SESSION['message'])) {
         echo '<p>' . $_SESSION['message'] . '</p>';
@@ -115,7 +125,7 @@ if (isset($_SESSION['user'])) {
 
 <footer class="replay-footer" id="footer">
     <div class="footer-title">iREPLAY</div>
-    <div class="footer-copyright"> © 2016 HAMERY Simon & PAVLOV Catalina | All Right Reserved </div>
+    <div class="footer-copyright"> © 2016 HAMERY Simon & PAVLOV Catalina | All Right Reserved</div>
 </footer>
 </body>
 </html>

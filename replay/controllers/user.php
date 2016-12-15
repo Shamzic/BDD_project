@@ -37,6 +37,7 @@ class Controller_User
 						{
 							$_SESSION['user'] = $login;
 							$_SESSION['uid'] = $u->getId();
+                            $_SESSION['usadmin'] = $u->getIsAdmin();
 							header('Location: index.php?ctrl=video&action=showVideos');
 							exit();
 						}
