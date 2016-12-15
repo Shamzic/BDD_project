@@ -156,7 +156,7 @@ class Controller_Video
 
     public function showVideosByRecommended()
     {
-       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+       /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $idv = htmlspecialchars($_POST['fav']);
             $idu = $_SESSION['uid'];
             $idrec = Recommended::get_by_id($idu);
@@ -166,7 +166,7 @@ class Controller_Video
                 Recommended::newRecommended($idu, $idv);
             }
 
-        }
+        }*/
         if (isset($_SESSION['user'])) {
             $id = $_SESSION['uid'];
             $rec = Video::getByRecommended($id);

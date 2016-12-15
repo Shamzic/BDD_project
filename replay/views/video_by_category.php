@@ -20,6 +20,8 @@
                 echo "images/emptystar.png";
             } ?>" alt="Submit" width="15" height="15" value="<?php echo $videoCat->getId() ?>" name="fav">
         </form>
+
+
     </div><?php
     }
     ?>

@@ -218,7 +218,7 @@ class Video extends Model_Base
 
       public static function getByRecommended($id)
     {
-        $s = self::$_db->prepare('SELECT * FROM video WHERE id_vid in (SELECT id_vid FROM recommended WHERE id_user = :id)');
+        $s = self::$_db->prepare('SELECT * FROM video WHERE id_categ in (SELECT id_categorie FROM interesse WHERE id_user = :id) and id_vid NOT IN (SELECT id_vid from favoris where id_user=:id)');
         $s->bindValue(':id', $id, PDO::PARAM_INT);
         $s->execute();
         $res = array();

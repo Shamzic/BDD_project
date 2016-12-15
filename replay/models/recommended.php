@@ -34,7 +34,8 @@ class Recommended extends Model_Base
     }
 
     public static function get_by_id($idu) {
-        $s = self::$_db->prepare('SELECT id_vid FROM recommended WHERE id_user = :idu');
+        $s = self::$_db->prepare('SELECT id_vid FROM video WHERE id_categ in (SELECT id_categorie FROM interesse WHERE id_user = :id) 
+                                                                and id_vid NOT IN (SELECT id_vid from favoris where id_user=:id)');
         $s->bindValue(':idu', $idu, PDO::PARAM_INT);
         $s->execute();
         $res = array();
@@ -44,7 +45,7 @@ class Recommended extends Model_Base
         }
         return $res;
     }
-
+    /*
     public static function newRecommended($idu, $idv)
     {
         $q = self::$_db->prepare('INSERT INTO recommended(id_vid, id_user) VALUES (:idv,:idu)');
@@ -52,7 +53,6 @@ class Recommended extends Model_Base
         $q->bindValue(':idv',$idv, PDO::PARAM_STR);
         $q->execute();
     }
-    
 
      public static function deleteRecommended($idu, $idv)
     {
@@ -74,5 +74,5 @@ class Recommended extends Model_Base
             $res[] = ($data['id_vid']);
         }
         return $res;
-    }
+    }*/
 }
