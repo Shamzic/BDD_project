@@ -8,6 +8,8 @@
 		<div class="titre">Profil de <?php echo $u->getLogin();?></div>
 	</div>
 	<div class="profil">
+
+		
 		<ul>
 			 <li class=blue>Login</li>
 			 <li><?php echo $u->getLogin();?></li>
@@ -28,6 +30,8 @@
 			 <li><?php echo $u->getPays();?></li>
 		</ul>
 		<form method="post" action="index.php?ctrl=user&action=profil">
+			<label for="pw">Changer le login</label>
+			<input type="text" id="login" name="login">
 			<label for="pw">Changer le mot de passe</label>
 			<input type="password" id="pw" name="pw">
 			<label for="pw2">Mot de passe actuel</label>
