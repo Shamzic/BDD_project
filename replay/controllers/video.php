@@ -7,44 +7,6 @@ require_once 'models/recommended.php';
 
 class Controller_Video
 {
-    /**
-     * \brief Cette méthode permet à un utilisateur de créer une notes
-     * \details Si l'utilisateur arrive en GET et est connecté, on affiche le formulaire de création de note (vue create_note)
-     * \details Si l'utilisateur arrive en POST, on traite les données du formulaire : si le titre n'est pas vide, on ajoute la note à la base de données puis on redirige l'utilisateur vers l'affichage de ses notes
-     */
-
-    public function createNote()
-    {
-        if (isset($_SESSION['user'])) {
-            switch ($_SERVER['REQUEST_METHOD']) {
-                case 'GET':
-                    include 'views/create_note.html';
-                    break;
-
-                case 'POST':
-                    if (isset($_POST['titre']) && isset($_POST['txt'])) {
-                        if ($_POST['titre'] != '') {
-                            $titre = htmlspecialchars($_POST['titre']);
-                            $texte = htmlspecialchars($_POST['txt']);
-                            Video::newNote($titre, $texte);
-                            $_SESSION['message'] = 'Note créée !';
-                            header('Location: index.php?ctrl=video&action=showVideos');
-                            exit();
-                        } else {
-                            $error_message = "Le titre ne doit pas être vide !";
-                            include 'views/error.php';
-                        }
-                    } else {
-                        $error_message = "Données postées incomplètes !";
-                        include 'views/error.php';
-                    }
-                    break;
-            }
-        } else {
-            header('Location: index.php');
-            exit();
-        }
-    }
 
     /**
      * \brief show all the videos
@@ -131,6 +93,24 @@ class Controller_Video
         }
     }
 
+    public function showVideoAdminEdit()
+    {
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_vid'])) {
+                $id = (int)$_GET['id_vid'];
+                $v = Video::getById($id);
+                include 'views/videoEdit.php';
+            } else {
+                $id = (int)$_GET['id_vid'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
     public function showVideosByFavorite()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -154,9 +134,22 @@ class Controller_Video
         }
     }
 
-    public function showVideosDataBase()
+    public function showVideoAdmin()
     {
-
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['del']);
+            Video::deleteVideo($idv);
+        }
+        if (isset($_SESSION['user']))
+        {
+            $v = Video::getVideos();
+            include 'views/adminVideo.php';
+        }
+        else
+        {
+            header('Location: index.php');
+            exit();
+        }
     }
 
     public function showVideosByRecommended()
