@@ -72,6 +72,21 @@
     font-size: 1rem;
 }
 
+.button--admin {
+    background-color: #333333;
+    width: 100%;
+    text-align: left;
+    font-size: 1.125rem;
+}
+
+.button:hover {
+    background-color: rgb(255, 207, 116);
+}
+
+.button:focus {
+    background-color: rgb(255, 207, 116) !important;
+}
+
 .video-title {
     float: left;
     margin: 0;
@@ -118,9 +133,8 @@
     height: 23.13rem;
 }
 
-.page--padding
-{
-    padding-bottom:  6.25rem;
+.page--padding {
+    padding-bottom: 6.25rem;
 }
 
 .video-box {

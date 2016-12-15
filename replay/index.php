@@ -88,7 +88,7 @@ if (isset($_SESSION['user'])) {
         <?php
         if ($_SESSION['usadmin']) {
             ?>
-            <li class="topBar-li"><a href="index.php?ctrl=user&action=profil"> Admin </a></li>
+            <li class="topBar-li"><a href="index.php?ctrl=user&action=administrer"> Admin </a></li>
             <?php
         } else {
             ?>

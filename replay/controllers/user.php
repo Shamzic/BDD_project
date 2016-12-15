@@ -200,5 +200,10 @@ class Controller_User
 		session_destroy();
 		header('Location: index.php');
 		exit();
-	}	
+	}
+
+    public function administrer()
+    {
+        include 'views/admin.php';
+    }
 }
