@@ -26,12 +26,8 @@ class Controller_User
 					$login = htmlspecialchars($_POST['login']);
 					$pw = htmlspecialchars($_POST['pw']);
 					$u = User::get_by_login($login);
-					if (!is_null($u)) {
-						echo ' login : '.$login;
-						echo ' get_by_login : '.$u->getLogin();
-						echo ' get_by_login mdp hashed : '.$u->getMdp();
-						echo ' hash pw : '.hash('md5',$pw);
-
+					if (!is_null($u)) 
+					{
 
 						if ($u->getMdp() == hash('md5',$pw))
 						{
