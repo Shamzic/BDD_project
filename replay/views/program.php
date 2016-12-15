@@ -5,7 +5,7 @@
         foreach ($p as $program) {
         ?>
         <a href="index.php?ctrl=video&action=showVideosByProgram&id_prog=<?php echo $program->getId() ?>">
-            <div class="small-12 medium-6 large-4 columns category-box">
+            <div class="small-12 medium-6 large-4 columns category-box end">
                 <?php
                 echo '<img class=" video_image program_image" src="data:image/jpg;base64,' . base64_encode($program->getImage()) . '"/>';
                 ?>
