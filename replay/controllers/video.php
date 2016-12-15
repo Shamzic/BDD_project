@@ -140,15 +140,34 @@ class Controller_Video
             $idv = htmlspecialchars($_POST['del']);
             Video::deleteVideo($idv);
         }
-        if (isset($_SESSION['user']))
-        {
+        if (isset($_SESSION['user'])) {
             $v = Video::getVideos();
             include 'views/adminVideo.php';
-        }
-        else
-        {
+        } else {
             header('Location: index.php');
             exit();
+        }
+    }
+
+    public function updateVideo()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['url'])) {
+                if ($_POST['name'] != '' && $_POST['url'] != '' && $_POST['desc'] != '') {
+                    $id = (int)$_GET['id_vid'];
+                    $name = htmlspecialchars($_POST['name']);
+                    $desc = htmlspecialchars($_POST['desc']);
+                    $url = htmlspecialchars($_POST['url']);
+                    Video::updateVid($id,$name, $desc, $url);
+                    $_SESSION['message'] = "Inscription done";
+                } else {
+                    $error_message = "Every fields need to be complete";
+                    include 'views/error.php';
+                }
+            } else {
+                $error_message = "Data post incomplete";
+                include 'views/error.php';
+            }
         }
     }
 
@@ -175,7 +194,6 @@ class Controller_Video
             exit();
         }
     }
-
 
 
     public function showVideosByProgram()

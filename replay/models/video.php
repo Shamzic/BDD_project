@@ -240,4 +240,15 @@ class Video extends Model_Base
         $s->execute();
 
     }
+
+
+    public static function updateVid($id, $name, $desc, $url)
+    {
+        $q = self::$_db->prepare('UPDATE video SET nom_vid=:name, descr_vid=:desc, video_link=:url WHERE id_vid=:id');
+        $q->bindValue(':id', $id, PDO::PARAM_STR);
+        $q->bindValue(':name', $name, PDO::PARAM_STR);
+        $q->bindValue(':desc', $desc, PDO::PARAM_STR);
+        $q->bindValue(':url', $url, PDO::PARAM_STR);
+        $q->execute();
+    }
 }
