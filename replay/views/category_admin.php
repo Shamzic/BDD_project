@@ -18,7 +18,7 @@
                 <input type="button" name="lien1" value="modify" onclick="self.location.href='lien.html'" 
                 style="background-color:#183152; color:white; font-weight:bold"onclick> 
 
-                <input type="button" name="lien1" value="delete" onclick="<?php Categorie::DeleteCategorie($category->getId())?>" 
+                <input type="button" name="lien1" value="delete" onclick="<?php Category::DeleteCategorie($category->getId())?>" 
                 style="background-color:#183152; color:white; font-weight:bold"onclick> 
 
             </div></a>
