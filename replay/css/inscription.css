@@ -22,14 +22,14 @@
     margin-left:30%;
     font-family: "Gotham Medium", sans-serif;
     padding: 30px 10px 10px;
-    margin-bottom: 70px;
+    margin-bottom: 10px;
 }
 
 .center label
 {
 		color: black;
 		margin-top : none;
-		margin-bottom: none;
 		font-family: "Gotham Medium", sans-serif;
 		font-size : 15px;
+		
 }

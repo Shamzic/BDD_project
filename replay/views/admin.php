@@ -4,7 +4,7 @@
         <a href="#" class="button button--admin">Users</a>
         <a href="#" class="button  button--admin">Videos</a>
         <a href="#" class="button  button--admin">Programs</a>
-        <a href="#" class="button  button--admin">Categories</a>
+        <a href="index.php?ctrl=category&action=showCategoriesAdmin" class="button  button--admin">Categories</a>
     </div>
 </div>
 

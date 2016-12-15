@@ -93,4 +93,13 @@ class Category extends Model_Base
             return null;
         }
     }
+
+    public static function deletecategorie($id)
+    {
+        $s = self::$_db->prepare('DELETE FROM categorie WHERE id_categorie = :id');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+    }
+
+
 }

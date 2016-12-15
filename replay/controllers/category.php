@@ -24,4 +24,19 @@ class Controller_Category
         }
     }
 
+
+    public function showCategoriesAdmin()
+    {
+        if (isset($_SESSION['user']))
+        {
+            $c = Category::getCategories();
+            include 'views/category_admin.php';
+        }
+        else
+        {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
 }
