@@ -172,6 +172,7 @@ class Controller_Video
              }
 
          }*/
+
         if (isset($_SESSION['user'])) {
             $id = $_SESSION['uid'];
             $rec = Video::getByRecommended($id);
@@ -181,6 +182,8 @@ class Controller_Video
             exit();
         }
     }
+
+
 
     public function showVideosByProgram()
     {

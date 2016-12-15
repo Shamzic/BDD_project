@@ -14,7 +14,7 @@ class Controller_User
 		switch ($_SERVER['REQUEST_METHOD']) {
 			case 'GET' :
 				if (isset($_SESSION['user'])) {
-					$error_message = "Vous êtes déjà connectés en tant que ".$_SESSION['user'];
+					$error_message = "You are already connected as ".$_SESSION['user'];
 					include 'views/error.php';
 				} else {
 					include 'views/connexion.html';
@@ -26,12 +26,8 @@ class Controller_User
 					$login = htmlspecialchars($_POST['login']);
 					$pw = htmlspecialchars($_POST['pw']);
 					$u = User::get_by_login($login);
-					if (!is_null($u)) {
-						echo ' login : '.$login;
-						echo ' get_by_login : '.$u->getLogin();
-						echo ' get_by_login mdp hashed : '.$u->getMdp();
-						echo ' hash pw : '.hash('md5',$pw);
-
+					if (!is_null($u)) 
+					{
 
 						if ($u->getMdp() == hash('md5',$pw))
 						{
@@ -43,17 +39,17 @@ class Controller_User
 						}
 						else
 						{
-							$error_message = "Combinaison login/mot de passe incorrecte !";
+							$error_message = "Incomplete combination of password and login";
 							include 'views/error.php';
 						}
 					}
 					else
 					{
-						$error_message = "Ce login n'existe pas !";
+						$error_message = "This login does not exist !";
 						include 'views/error.php';
 					}
 				} else {
-					$error_message = "Données postées incomplètes";
+					$error_message = "Incomplete fields !";
 					include 'views/error.php';
 				}
 				break;
@@ -99,29 +95,29 @@ class Controller_User
 						if (is_null($u))
 						{
 							User::newUser($login,$mdp,$nom,$prenom,$mail,$dateN,$pays);
-							$_SESSION['message'] = "Inscription réalisée avec succès !";
+							$_SESSION['message'] = "Inscription done";
 						}
 						else
 						{
-							$error_message = "Login déjà utilisé !";
+							$error_message = "Login already used";
 							include 'views/error.php';
 						}
 					}
 					else
 					{
-						$error_message = "Les mots de passe ne correspondent pas !";
+						$error_message = "Passwords do not match";
 						include 'views/error.php';
 					}
 				}
 				else
 				{
-					$error_message = "Tous les champs doivent être remplis !";
+					$error_message = "Every fields need to be complete";
 					include 'views/error.php';
 				}
 			}
 			else
 			{
-				$error_message = "Données postées incomplètes";
+				$error_message = "Data post incomplete";
 				include 'views/error.php';
 			}
 		}
@@ -170,19 +166,19 @@ class Controller_User
 						}
 						else
 						{
-							$error_message = "Ce login est déjà utilisé !";
+							$error_message = "Login already used";
 							include 'views/error.php';
 						}
 					}
 					else
 					{
-						$error_message = "Le login ne peut être vide !";
+						$error_message = "Login can't be empty";
 						include 'views/error.php';
 					}
 				}
 				else
 				{	
-					$error_message = "Le mot de passe actuel est faux !";
+					$error_message = "Actual password is false";
 					include 'views/error.php';
 				}
 			}
