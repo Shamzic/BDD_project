@@ -159,7 +159,9 @@ class Controller_Video
                     $desc = htmlspecialchars($_POST['desc']);
                     $url = htmlspecialchars($_POST['url']);
                     Video::updateVid($id,$name, $desc, $url);
-                    $_SESSION['message'] = "Inscription done";
+                    $_SESSION['message'] = "Video edited";
+                    $v = Video::getVideos();
+                    include 'views/adminVideo.php';
                 } else {
                     $error_message = "Every fields need to be complete";
                     include 'views/error.php';
