@@ -7,18 +7,20 @@ class Video extends Model_Base
 {
     private $_id;
     private $_titre;
+    private $_desc;
     private $_texte;
     private $_auteur;
     private $_link;
     private $_idCat;
 
-    public function __construct($id, $video_name, $video_img, $video_lnk, $idCat)
+    public function __construct($id, $video_name, $video_img, $video_lnk, $idCat, $desc)
     {
         $this->setId($id);
         $this->setTitre($video_name);
         $this->setTexte($video_img);
         $this->setLink($video_lnk);
         $this->setIdCat($idCat);
+        $this->setDesc($desc);
     }
 
     public function getId()
@@ -52,6 +54,20 @@ class Video extends Model_Base
             $this->_titre = $video_name;
         } else {
             $this->_titre = '';
+        }
+    }
+
+    public function getDesc()
+    {
+        return $this->_desc;
+    }
+
+    public function setDesc($video_desc)
+    {
+        if (is_string($video_desc)) {
+            $this->_desc = $video_desc;
+        } else {
+            $this->_desc = '';
         }
     }
 
@@ -117,7 +133,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -137,7 +153,7 @@ class Video extends Model_Base
         $res = array();
 
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null, $data['id_categ']);
+            $res[] =new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -150,7 +166,7 @@ class Video extends Model_Base
         $res = array();
 
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -169,7 +185,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -181,7 +197,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null, $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -200,7 +216,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], $data['video_link'], $data['id_categ']);
+            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
@@ -212,7 +228,7 @@ class Video extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Video($data['id_vid'], $data['nom_vid'], $data['video_image'], null, $data['id_categ']);
+            $res[] =new Video($data['id_vid'], $data['nom_vid'], $data['video_image'],$data['video_link'], $data['id_categ'], $data['descr_vid']);
         }
         return $res;
     }
