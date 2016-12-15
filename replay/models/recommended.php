@@ -34,7 +34,7 @@ class Recommended extends Model_Base
     }
 
     public static function get_by_id($idu) {
-        $s = self::$_db->prepare('SELECT id_vid FROM favoris WHERE id_user = :idu');
+        $s = self::$_db->prepare('SELECT id_vid FROM recommended WHERE id_user = :idu');
         $s->bindValue(':idu', $idu, PDO::PARAM_INT);
         $s->execute();
         $res = array();
@@ -45,17 +45,27 @@ class Recommended extends Model_Base
         return $res;
     }
 
-     public static function newRecommended($idu, $idv)
+    public static function newRecommended($idu, $idv)
     {
-        $q = self::$_db->prepare('INSERT INTO interesse (id_vid, id_user) VALUES (:idv,:idu)');
+        $q = self::$_db->prepare('INSERT INTO recommended(id_vid, id_user) VALUES (:idv,:idu)');
         $q->bindValue(':idu',$idu, PDO::PARAM_STR);
         $q->bindValue(':idv',$idv, PDO::PARAM_STR);
         $q->execute();
     }
+    
+
+     public static function deleteRecommended($idu, $idv)
+    {
+        $s = self::$_db->prepare('DELETE FROM recommended WHERE id_vid = :idv AND id_user = :idu');
+        $s->bindValue(':idv', $idv, PDO::PARAM_INT);
+        $s->bindValue(':idu', $idu, PDO::PARAM_INT);
+        $s->execute();
+    }
+
 
     public static function getRecommended($idUser)
     {
-        $s = self::$_db->prepare('SELECT id_vid FROM interesse WHERE id_user = :idUser');
+        $s = self::$_db->prepare('SELECT id_vid FROM recommended WHERE id_user = :idUser');
         $s->bindValue(':idUser', $idUser, PDO::PARAM_INT);
         $s->execute();
         $res = array();

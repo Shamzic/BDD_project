@@ -154,6 +154,29 @@ class Controller_Video
         }
     }
 
+    public function showVideosByRecommended()
+    {
+       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idrec = Recommended::get_by_id($idu);
+            if (in_array($idv, $idrec)) {
+                Recommended::deleteRecommended($idu, $idv);
+            } else {
+                Recommended::newRecommended($idu, $idv);
+            }
+
+        }
+        if (isset($_SESSION['user'])) {
+            $id = $_SESSION['uid'];
+            $rec = Video::getByRecommended($id);
+            include 'views/recommended.php';
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
     public function showVideosByProgram()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -210,24 +233,7 @@ class Controller_Video
         }
     }
 
-    public function showVideoByRecommanded()
-    {
-        if (isset($_SESSION['user'])) {
-            if (isset($_GET['id_video'])) {
-                $id = (int)$_GET['id_video'];
-                $v = Recommended::getById($id);
-                
-                include 'views/recommanded.php';
-            } else {
-                $id = (int)$_GET['id_video'];
-                $error_message = $id;
-                include 'views/error.php';
-            }
-        } else {
-            header('Location: index.php');
-            exit();
-        }
-    }
+
 
     /**
      * \brief Permet l'édition d'une note
