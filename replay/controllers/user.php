@@ -86,7 +86,7 @@ class Controller_User
 					$nom = htmlspecialchars($_POST['nom']);
 					$prenom = htmlspecialchars($_POST['prenom']);
 					$mail = htmlspecialchars($_POST['mail']);
-					$dateN = htmlspecialchars($_POST['dateN']);
+					$dateN = htmlspecialchars(date("Y-m-d",strtotime($_POST['dateN'])));
 					$pays = htmlspecialchars($_POST['pays']);
 					
 					if ($mdp == $mdp2)
@@ -96,6 +96,8 @@ class Controller_User
 						{
 							User::newUser($login,$mdp,$nom,$prenom,$mail,$dateN,$pays);
 							$_SESSION['message'] = "Inscription done";
+							include 'views/connexion.html';
+
 						}
 						else
 						{

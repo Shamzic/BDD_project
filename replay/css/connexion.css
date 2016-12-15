@@ -72,6 +72,18 @@ main {
 	text-align: center;
 }
 
+#central p
+{
+	color:white;
+	margin: 10px;
+	text-align: center;
+	font-size : 40px ;
+	font-weight:bold;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	background-color: rgba(153, 248, 86, 0.5);
+}
+
 h3{
 	font-size: 38px;
 	font-weight: normal;

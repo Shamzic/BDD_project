@@ -101,5 +101,15 @@ class Category extends Model_Base
         $s->execute();
     }
 
+    public function saveCategorie($n)
+    {
+        if (!is_null($this->_id)) {
+            $q = self::$_db->prepare('UPDATE categorie SET nom_categorie = :n WHERE id_user = :id');
+            $q->bindValue(':n', $n, PDO::PARAM_STR);
+            $q->bindValue(':id', $this->_id, PDO::PARAM_INT);
+            $q->execute();
+        }
+    }
+
 
 }
