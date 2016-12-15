@@ -34,8 +34,8 @@ class Recommended extends Model_Base
     }
 
     public static function get_by_id($idu) {
-        $s = self::$_db->prepare('SELECT id_vid FROM video WHERE id_categ in (SELECT id_categorie FROM interesse WHERE id_user = :id) 
-                                                                and id_vid NOT IN (SELECT id_vid from favoris where id_user=:id)');
+        $s = self::$_db->prepare(' SELECT id_vid FROM video WHERE id_categ in (SELECT id_categorie FROM interesse WHERE id_user = :id) 
+                                                                and id_vid NOT IN (SELECT id_vid from favoris where id_user=:id) ');
         $s->bindValue(':idu', $idu, PDO::PARAM_INT);
         $s->execute();
         $res = array();
