@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Gotham Medium";
+    src: url(Gotham-Medium.otf);
+}
+
+.description 
+{
+	margin-bottom: 50px;
+	text-align:left;
+	margin-left: 90px;
+	font-family: "Gotham Medium", sans-serif;
+	font-size : 18px;
+}
