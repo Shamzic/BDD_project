@@ -25,8 +25,12 @@ class Controller_Category
     }
 
 
-    public function showCategoriesAdmin()
+    public function showCategoryAdmin()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['del']);
+            Category::deleteCategory($idv);
+        }
         if (isset($_SESSION['user']))
         {
             $c = Category::getCategories();
@@ -36,6 +40,46 @@ class Controller_Category
         {
             header('Location: index.php');
             exit();
+        }
+    }
+
+    public function showCategoryAdminEdit()
+    {
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_cat'])) {
+                $id = (int)$_GET['id_cat'];
+                $c = Category::getById($id);
+                include 'views/categoryEdit.php';
+            } else {
+                $id = (int)$_GET['id_cat'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function updateCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['name'])) {
+                if ($_POST['name'] != '') {
+                    $id = (int)$_GET['id_cat'];
+                    $name = htmlspecialchars($_POST['name']);
+                    Category::updateCat($id,$name);
+                    $_SESSION['message'] = "Category edited";
+                    $c = Category::getCategories();
+                    include 'views/adminCategory.php';
+                } else {
+                    $error_message = "Every fields need to be complete";
+                    include 'views/error.php';
+                }
+            } else {
+                $error_message = "Data post incomplete";
+                include 'views/error.php';
+            }
         }
     }
 

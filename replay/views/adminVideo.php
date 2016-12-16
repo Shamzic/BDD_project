@@ -4,9 +4,7 @@
         <?php
         foreach ($v as $video) {
             ?>
-
-
-            <div class="small-12 columns category-box">
+            <div class="small-12 columns line-margin">
                 <div class="column-box--admin">
                     <?php echo $video->getTitre() ?>
                     <form method="post" action="index.php?ctrl=video&action=showVideoAdmin" class="icon--admin">
