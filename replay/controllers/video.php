@@ -158,7 +158,7 @@ class Controller_Video
                     $name = htmlspecialchars($_POST['name']);
                     $desc = htmlspecialchars($_POST['desc']);
                     $url = htmlspecialchars($_POST['url']);
-                    Video::updateVid($id,$name, $desc, $url);
+                    Video::updateVid($id, $name, $desc, $url);
                     $_SESSION['message'] = "Video edited";
                     $v = Video::getVideos();
                     include 'views/adminVideo.php';
@@ -175,19 +175,20 @@ class Controller_Video
 
     public function showVideosByRecommended()
     {
-        /*if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-             $idv = htmlspecialchars($_POST['fav']);
-             $idu = $_SESSION['uid'];
-             $idrec = Recommended::get_by_id($idu);
-             if (in_array($idv, $idrec)) {
-                 Recommended::deleteRecommended($idu, $idv);
-             } else {
-                 Recommended::newRecommended($idu, $idv);
-             }
-
-         }*/
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idv = htmlspecialchars($_POST['fav']);
+            $idu = $_SESSION['uid'];
+            $idfav = Favorite::get_by_id($idu);
+            if (in_array($idv, $idfav)) {
+                Favorite::deleteFavorite($idu, $idv);
+            } else {
+                Favorite::newFavorite($idu, $idv);
+            }
+        }
 
         if (isset($_SESSION['user'])) {
+            $idu = $_SESSION['uid'];
+            $f = Video::getByFavorite($idu);
             $id = $_SESSION['uid'];
             $rec = Video::getByRecommended($id);
             include 'views/recommended.php';

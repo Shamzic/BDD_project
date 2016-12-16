@@ -12,7 +12,13 @@
 
                 <span class="video-title"><?php echo $recvid->getTitre(); ?></span>
         </a>
-        </form> 
+        <form method="post" action="index.php?ctrl=video&action=showVideosByRecommended" class="video-fav">
+            <input type="image" src="<?php if (in_array($recvid->getId(), $f)) {
+                echo "images/star.png";
+            } else {
+                echo "images/emptystar.png";
+            } ?>" alt="Submit" width="15" height="15" value="<?php echo $recvid->getId() ?>" name="fav">
+        </form>
     </div><?php
     }
     ?>
