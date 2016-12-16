@@ -208,4 +208,62 @@ class Controller_User
     {
         include 'views/admin.php';
     }
+
+    public function showUserAdmin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idu = htmlspecialchars($_POST['del']);
+            User::deleteUser($idu);
+        }
+        if (isset($_SESSION['user'])) {
+            $u = User::getUsers();
+            include 'views/adminUser.php';
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function showUserAdminEdit()
+    {
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_usr'])) {
+                $id = (int)$_GET['id_usr'];
+                $u = User::get_by_id($id);
+                include 'views/userEdit.php';
+            } else {
+                $id = (int)$_GET['id_vid'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function updateUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['url'])) {
+                if ($_POST['name'] != '' && $_POST['url'] != '' && $_POST['desc'] != '') {
+                    $id = (int)$_GET['id_vid'];
+                    $name = htmlspecialchars($_POST['name']);
+                    $desc = htmlspecialchars($_POST['desc']);
+                    $url = htmlspecialchars($_POST['url']);
+                    Video::updateVid($id,$name, $desc, $url);
+                    $_SESSION['message'] = "Video edited";
+                    $v = Video::getVideos();
+                    include 'views/adminVideo.php';
+                } else {
+                    $error_message = "Every fields need to be complete";
+                    include 'views/error.php';
+                }
+            } else {
+                $error_message = "Data post incomplete";
+                include 'views/error.php';
+            }
+        }
+    }
+
 }

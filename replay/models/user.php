@@ -217,7 +217,7 @@ class User extends Model_Base
 
     public static function get_by_id($id)
     {
-        $s = self::$_db->prepare('SELECT id_user,login_user,mdp_user FROM utilisateur WHERE id_user = :id');
+        $s = self::$_db->prepare('SELECT * FROM utilisateur WHERE id_user = :id');
         $s->bindValue(':id', $id, PDO::PARAM_INT);
         $s->execute();
         $data = $s->fetch(PDO::FETCH_ASSOC);
@@ -225,7 +225,13 @@ class User extends Model_Base
             return new User(
                 $data['id_user'],
                 $data['login_user'],
-                $data['mdp_user']
+                $data['mdp_user'],
+                $data['nom_user'],
+                $data['prenom_user'],
+                $data['mail_user'],
+                $data['dateNaiss_user'],
+                $data['pays'],
+                $data['boolAdmin_user']
             );
         } else {
             return null;
@@ -251,5 +257,34 @@ class User extends Model_Base
         $q->bindValue(':pa', $pa, PDO::PARAM_STR);
         $q->bindValue(':admin', $admin, PDO::PARAM_STR);
         $q->execute();
+    }
+
+    public static function getUsers()
+    {
+        $s = self::$_db->prepare('SELECT * FROM utilisateur');
+        $s->execute();
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
+            $res[] = new User(
+                $data['id_user'],
+                $data['login_user'],
+                $data['mdp_user'],
+                $data['nom_user'],
+                $data['prenom_user'],
+                $data['mail_user'],
+                $data['dateNaiss_user'],
+                $data['pays'],
+                $data['boolAdmin_user']
+            );
+        }
+        return $res;
+    }
+
+    public static function deleteUser($idu)
+    {
+        $s = self::$_db->prepare('DELETE FROM utilisateur WHERE id_user = :idu');
+        $s->bindValue(':idu', $idu, PDO::PARAM_INT);
+        $s->execute();
+
     }
 }
