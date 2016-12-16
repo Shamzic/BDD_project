@@ -230,9 +230,10 @@ class Controller_User
             if (isset($_GET['id_usr'])) {
                 $id = (int)$_GET['id_usr'];
                 $u = User::get_by_id($id);
+                print ($u);
                 include 'views/userEdit.php';
             } else {
-                $id = (int)$_GET['id_vid'];
+                $id = (int)$_GET['id_usr'];
                 $error_message = $id;
                 include 'views/error.php';
             }

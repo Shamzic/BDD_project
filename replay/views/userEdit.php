@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/profil.css" type="text/css">
 </head>
+liaewughlerigh;eorigh;eorighkdnvlgriohdkvnxdfhgfhknldgrui
 <?php
 foreach ($u as $user) {
     ?>

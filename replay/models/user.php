@@ -220,9 +220,9 @@ class User extends Model_Base
         $s = self::$_db->prepare('SELECT * FROM utilisateur WHERE id_user = :id');
         $s->bindValue(':id', $id, PDO::PARAM_INT);
         $s->execute();
-        $data = $s->fetch(PDO::FETCH_ASSOC);
-        if ($data) {
-            return new User(
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
+            $res[] = new User(
                 $data['id_user'],
                 $data['login_user'],
                 $data['mdp_user'],
@@ -233,9 +233,8 @@ class User extends Model_Base
                 $data['pays'],
                 $data['boolAdmin_user']
             );
-        } else {
-            return null;
         }
+        return $res;
     }
 
     /**
