@@ -251,4 +251,17 @@ class Video extends Model_Base
         $q->bindValue(':url', $url, PDO::PARAM_STR);
         $q->execute();
     }
+
+    public static function getFavoritesName($idUser)
+    {
+        $s = self::$_db->prepare('SELECT nom_vid FROM video WHERE id_vid IN (SELECT id_vid FROM favoris WHERE id_user = :idUser )');
+        $s->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+        $s->execute();
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC))
+        {
+            $res[] = ($data['nom_vid']);
+        }
+        return $res;
+    }
 }

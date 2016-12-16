@@ -151,5 +151,16 @@ class Program extends Model_Base
         $q->execute();
     }
 
-
+    public static function getSubscribeName($idUser)
+    {
+        $s = self::$_db->prepare('SELECT prog_name FROM emission WHERE id_ems IN (SELECT id_ems FROM abonnement WHERE id_user = :idUser )');
+        $s->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+        $s->execute();
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC))
+        {
+            $res[] = ($data['prog_name']);
+        }
+        return $res;
+    }
 }

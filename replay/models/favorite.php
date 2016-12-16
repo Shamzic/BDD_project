@@ -87,4 +87,6 @@ class Favorite extends Model_Base
         }
         return $res;
     }
+
+
 }

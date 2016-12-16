@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/profil.css" type="text/css">
 </head>
-liaewughlerigh;eorigh;eorighkdnvlgriohdkvnxdfhgfhknldgrui
 <?php
 foreach ($u as $user) {
     ?>
@@ -31,5 +30,9 @@ foreach ($u as $user) {
     <?php
 }
 ?>
+<div class="row">
+    <a href="index.php?ctrl=user&action=showUserFavAdmin&id_usr=<?php echo $user->getId() ?>" class="button button--admin">Favorites</a>
+    <a href="index.php?ctrl=user&action=showUserSbsAdmin&id_usr=<?php echo $user->getId() ?>" class="button button--admin">Subscriptions</a>
+</div>
 </html>
 

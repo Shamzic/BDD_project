@@ -286,4 +286,17 @@ class User extends Model_Base
         $s->execute();
 
     }
+
+    public static function updateUsr($id, $name, $surname, $login, $password, $mail, $country)
+    {
+        $q = self::$_db->prepare('UPDATE utilisateur SET nom_user=:name, prenom_user=:surname, login_user=:login, mdp_user=:password, mail_user =:mail, pays=:country WHERE id_user=:id');
+        $q->bindValue(':id', $id, PDO::PARAM_STR);
+        $q->bindValue(':name', $name, PDO::PARAM_STR);
+        $q->bindValue(':surname', $surname, PDO::PARAM_STR);
+        $q->bindValue(':login', $login, PDO::PARAM_STR);
+        $q->bindValue(':password', $password, PDO::PARAM_STR);
+        $q->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $q->bindValue(':country', $country, PDO::PARAM_STR);
+        $q->execute();
+    }
 }
