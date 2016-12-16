@@ -33,4 +33,64 @@ class Controller_Program
         }
     }
 
+    public function showProgramAdmin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $idp = htmlspecialchars($_POST['del']);
+            Program::deleteProgram($idp);
+        }
+        if (isset($_SESSION['user']))
+        {
+            $p = Program::getPrograms();
+            include 'views/adminProgram.php';
+        }
+        else
+        {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function showProgramAdminEdit()
+    {
+        if (isset($_SESSION['user'])) {
+            if (isset($_GET['id_prog'])) {
+                $id = (int)$_GET['id_prog'];
+                $p = Program::getById($id);
+                include 'views/programEdit.php';
+            } else {
+                $id = (int)$_GET['id_prog'];
+                $error_message = $id;
+                include 'views/error.php';
+            }
+        } else {
+            header('Location: index.php');
+            exit();
+        }
+    }
+
+    public function updateProgram()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['name']) && isset($_POST['desc'])) {
+                if ($_POST['name'] != '' && $_POST['desc'] != '') {
+                    $id = (int)$_GET['id_prog'];
+                    $name = htmlspecialchars($_POST['name']);
+                    $desc = htmlspecialchars($_POST['desc']);
+                    Program::updateProg($id,$name, $desc);
+                    $_SESSION['message'] = "Program edited";
+                    $p = Program::getPrograms();
+                    include 'views/adminProgram.php';
+                } else {
+                    $error_message = "Every fields need to be complete";
+                    include 'views/error.php';
+                }
+            } else {
+                $error_message = "Data post incomplete";
+                include 'views/error.php';
+            }
+        }
+    }
+
+
 }

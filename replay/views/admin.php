@@ -3,7 +3,7 @@
     <div class="row">
         <a href="#" class="button button--admin">Users</a>
         <a href="index.php?ctrl=video&action=showVideoAdmin" class="button  button--admin">Videos</a>
-        <a href="#" class="button  button--admin">Programs</a>
+        <a href="index.php?ctrl=program&action=showProgramAdmin" class="button  button--admin">Programs</a>
         <a href="index.php?ctrl=category&action=showCategoryAdmin" class="button  button--admin">Categories</a>
     </div>
 </div>

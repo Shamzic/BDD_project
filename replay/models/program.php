@@ -7,12 +7,14 @@ class Program extends Model_Base
     private $_id;
     private $_name;
     private $_image;
+    private $_desc;
 
-    public function __construct($id, $category_name, $category_img)
+    public function __construct($id, $program_name, $program_img, $desc)
     {
         $this->setId($id);
-        $this->setName($category_name);
-        $this->setImage($category_img);
+        $this->setName($program_name);
+        $this->setImage($program_img);
+        $this->setDesc($desc);
     }
 
     public function getId()
@@ -30,12 +32,26 @@ class Program extends Model_Base
         return $this->_name;
     }
 
-    public function setName($category_name)
+    public function setName($program_name)
     {
-        if (is_string($category_name)) {
-            $this->_name = $category_name;
+        if (is_string($program_name)) {
+            $this->_name = $program_name;
         } else {
             $this->_name = '';
+        }
+    }
+
+    public function getDesc()
+    {
+        return $this->_desc;
+    }
+
+    public function setDesc($desc)
+    {
+        if (is_string($desc)) {
+            $this->_desc = $desc;
+        } else {
+            $this->_desc = '';
         }
     }
 
@@ -44,9 +60,9 @@ class Program extends Model_Base
         return $this->_image;
     }
 
-    public function setImage($category_img)
+    public function setImage($program_img)
     {
-        $this->_image = $category_img;
+        $this->_image = $program_img;
     }
 
 
@@ -60,7 +76,7 @@ class Program extends Model_Base
         $s->execute();
         $res = array();
         while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
-            $res[] = new Program($data['id_ems'], $data['name'], $data['image']);
+            $res[] = new Program($data['id_ems'], $data['prog_name'], $data['image'], $data['description']);
         }
         return $res;
     }
@@ -105,4 +121,35 @@ class Program extends Model_Base
         }
         return $res;
     }
+
+    public static function getById($id)
+    {
+        $s = self::$_db->prepare('SELECT * FROM emission WHERE id_ems = :id');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+
+        $res = array();
+        while ($data = $s->fetch(PDO::FETCH_ASSOC)) {
+            $res[] = new Program($data['id_ems'], $data['prog_name'], $data['image'], $data['description']);
+        }
+        return $res;
+    }
+
+    public static function deleteProgram ($id)
+    {
+        $s = self::$_db->prepare('DELETE FROM emission WHERE id_ems = :id');
+        $s->bindValue(':id', $id, PDO::PARAM_INT);
+        $s->execute();
+    }
+
+    public static function updateProg($id, $name, $desc)
+    {
+        $q = self::$_db->prepare('UPDATE emission SET prog_name=:name, description=:desc WHERE id_ems=:id');
+        $q->bindValue(':id', $id, PDO::PARAM_STR);
+        $q->bindValue(':name', $name, PDO::PARAM_STR);
+        $q->bindValue(':desc', $desc, PDO::PARAM_STR);
+        $q->execute();
+    }
+
+
 }
